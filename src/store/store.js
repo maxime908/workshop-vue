@@ -87,6 +87,10 @@ export const like = (id, bool) => {
     }
     store.value.find((t) => {
         if (t.id === parseInt(id)) {
+            if (t.dislike === true) {
+                t.dislikes--
+                t.dislike = false;
+            }
             t.like = bool
         }
     })
@@ -101,6 +105,10 @@ export const dislike = (id, bool) => {
     }
     store.value.find((t) => {
         if (t.id === parseInt(id)) {
+            if (t.like === true) {
+                t.likes--
+                t.like = false;
+            }
             t.dislike = bool
         }
     })
@@ -143,4 +151,8 @@ export const deleteAccount = (id) => {
     users.value.splice(users.value.indexOf(id), 1);
     localStorage.removeItem("is_authentificated");
     window.location.href = "/log/login";
+}
+
+export const removeParams = () => {
+    history.back()
 }

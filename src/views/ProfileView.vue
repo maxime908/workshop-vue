@@ -1,12 +1,23 @@
 <script setup>
-    import { deleteAccount, userInfo } from '@/store/store';
-    import { ref } from 'vue';
+    import { deleteAccount, removeParams, userInfo } from '@/store/store';
+    import { useUrlSearchParams } from '@vueuse/core';
+    import { computed, onMounted, ref } from 'vue';
 
-    let id_of_user
+    const params = useUrlSearchParams('history')
+
+    let id_of_user = null
 
     if (JSON.parse(localStorage.getItem('is_authentificated'))) {
         id_of_user = ref(JSON.parse(localStorage.getItem('is_authentificated'))['id'])
     }
+
+    let user = ref("");
+
+    onMounted(() => {
+        if (id_of_user) {
+            user.value = userInfo(id_of_user.value);
+        }
+    })
 </script>
 
 <template>
@@ -18,10 +29,13 @@
             </svg>
             <div class="d-flex flex-column gap-3 align-items-start">
                 <div class="d-flex gap-3">
-                    <span>Email : {{ userInfo(id_of_user).email }} </span>
+                    <label for="email">Email :</label>
+                    <input v-show="params.updateInfo" v-model="user.email" id="email"></input>
+                    <span v-show="!params.updateInfo">{{ user.email }}</span>
                 </div>
                 <button class="btn btn-danger" @click="deleteAccount(id_of_user)">Supprimer le compte</button>
-                <button class="btn btn-primary">Modifier les informations</button>
+                <button v-show="params.updateInfo" class="btn btn-primary" @click="removeParams()">Retour</button>
+                <a class="btn btn-primary" href="?updateInfo=true">Modifier les informations</a>
             </div>
         </div>
     </main>

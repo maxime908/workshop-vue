@@ -1,11 +1,15 @@
 <script setup>
+import { computed, ref, stop } from 'vue';
 import Home from '../components/Home.vue'
 import { store } from '../store/store';
+
+const count = ref(5)
+
 </script>
 
 <template>
   <main>
-    <div v-for="item in store">
+    <div v-for="item in store.slice(0, count)">
       <Home 
         :id="item.id" 
         :text="item.text"  
@@ -18,5 +22,7 @@ import { store } from '../store/store';
         :id_user="item.id_user"
       />
     </div>
+
+    <button class="btn btn-primary" @click="count += 5">Voir Plus</button>
   </main>
 </template>
