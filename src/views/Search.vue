@@ -18,6 +18,7 @@
                 :like-bool="item.like"
                 :dislike-bool="item.dislike"
                 :id_user="item.id_user"
+                :post-tag="item.tag"
             />
         </div>
     </main>

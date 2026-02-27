@@ -10,7 +10,7 @@ if (JSON.parse(localStorage.getItem('is_authentificated'))) {
 </script>
 
 <template>
-  <header class="position-fixed top-0 left-0 w-100">
+  <header class="position-fixed top-0 left-0 w-100 z-3">
     <nav class="d-flex justify-content-between m-auto p-3 navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

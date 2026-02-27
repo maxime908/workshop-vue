@@ -56,7 +56,11 @@
         id_user: {
             type: Number,
             required: true,
-        }
+        },
+        postTag: {
+            type: Array,
+            required: false,
+        },
     })
 
     const source = ref('Hello')
@@ -76,14 +80,21 @@
         </div>
 
         <div class="d-flex flex-column w-100 gap-3">
-            <img :src="img" :alt="img" class="w-50 object-fit-cover">
-            <div class="d-flex justify-content-between position-relative">
+            <a :href="img" class="fit-content">
+                <img :src="img" :alt="img" class="w-100 object-fit-cover">
+            </a>
+            <div v-if="code !== ''" class="d-flex justify-content-between position-relative">
                 <highlightjs class="w-100"
                     v-if="code !== null"
                     :code="code"
                 />
                 <i class="bi bi-clipboard2 position-absolute right-10px top-5px cursor-pointer" v-if="!copied" @click="copy(code)"></i>
                 <i v-else class="bi bi-clipboard2-fill position-absolute right-10px top-5px cursor-pointer"></i>
+            </div>
+            <div class="d-flex gap-2">
+                <router-link :to="'/search?tab=' + tag" v-for="tag in postTag" class="cursor-pointer btn p-0">
+                    {{ tag }}
+                </router-link>
             </div>
             <div>
                 {{ description }}
