@@ -18,6 +18,12 @@
             user.value = userInfo(id_of_user.value);
         }
     })
+
+    let is_authentificated
+
+    if (JSON.parse(localStorage.getItem('is_authentificated'))) {
+        is_authentificated = ref(JSON.parse(localStorage.getItem('is_authentificated')))
+    }
 </script>
 
 <template>
@@ -36,6 +42,7 @@
                 <button class="btn btn-danger" @click="deleteAccount(id_of_user)">Supprimer le compte</button>
                 <button v-show="params.updateInfo" class="btn btn-primary" @click="removeParams()">Retour</button>
                 <a class="btn btn-primary" href="?updateInfo=true">Modifier les informations</a>
+                <RouterLink v-if="is_authentificated" to="/logout" class="btn btn-primary">Se déconnecter</RouterLink>
             </div>
         </div>
     </main>

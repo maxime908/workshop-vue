@@ -15,6 +15,18 @@
             post.value = recupId(route.params.id)
         }
     })
+
+    function tabulationOnTextarea(event) {
+        if (event.key == 'Tab') {
+            event.preventDefault();
+
+            if (!route.params.id) {
+                code.value += "    ";
+            } else {
+                post.code.value += "    "
+            }
+        }
+    }
 </script>
 
 <template>
@@ -29,8 +41,8 @@
             <textarea v-else class="form-control" v-model="text"  name="description" id="description" rows="3" placeholder="Description"></textarea>
         </div>
         <div class="mb-3">
-            <textarea v-if="$route.params.id" class="form-control" v-model="post.code" name="code" id="code" rows="3" placeholder="Extrait de code"></textarea>
-            <textarea v-else class="form-control" v-model="code" name="code" id="code" rows="3" placeholder="Extrait de code"></textarea>
+            <textarea v-if="$route.params.id" class="form-control" v-model="post.code" name="code" id="code" rows="3" @keydown="tabulationOnTextarea($event)" placeholder="Extrait de code"></textarea>
+            <textarea v-else class="form-control" v-model="code" name="code" id="code" rows="3" @keydown="tabulationOnTextarea($event)" placeholder="Extrait de code"></textarea>
         </div>
 
         <button v-if="!$route.params.id" class="btn btn-primary" @click.prevent="addPost(img, text, code)">Valider</button>

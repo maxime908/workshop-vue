@@ -13,7 +13,10 @@ if (JSON.parse(localStorage.getItem('is_authentificated'))) {
   <header class="position-fixed top-0 left-0 w-100">
     <nav class="d-flex justify-content-between m-auto p-3 navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-between w-100">
               <li class="nav-item">
                 <RouterLink class="nav-link" to="/">Accueil</RouterLink>
@@ -21,8 +24,11 @@ if (JSON.parse(localStorage.getItem('is_authentificated'))) {
               <li class="nav-item">
                 <RouterLink class="nav-link" to="/post">Ajouter</RouterLink>
               </li>
+              <li is_authentificated class="nav-item">
+                <RouterLink class="nav-link" to="/search">Rechercher</RouterLink>
+              </li>
               <li v-if="is_authentificated" class="nav-item">
-                <RouterLink class="nav-link" to="/profile/1">Profile</RouterLink>
+                <RouterLink class="nav-link" to="/profile">Profile</RouterLink>
               </li>
               <li v-if="!is_authentificated" class="nav-item">
                 <RouterLink class="nav-link" to="/log/logup">S'inscrire</RouterLink>

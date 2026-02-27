@@ -5,14 +5,19 @@ import { store } from '../store/store';
 
 const count = ref(5)
 
+function increment() {
+  count.value += 5
+  window.location.href = "#button"
+}
+
 </script>
 
 <template>
-  <main>
+  <main class="d-flex flex-column gap-5">
     <div v-for="item in store.slice(0, count)">
       <Home 
         :id="item.id" 
-        :text="item.text"  
+        :description="item.text"  
         :img="item.img"
         :code="item.code"
         :likes="item.likes"
@@ -23,6 +28,6 @@ const count = ref(5)
       />
     </div>
 
-    <button class="btn btn-primary" @click="count += 5">Voir Plus</button>
+    <button class="btn btn-primary d-flex justify-content-center align-items-center m-auto" id="button" @click="increment">Voir Plus</button>
   </main>
 </template>
