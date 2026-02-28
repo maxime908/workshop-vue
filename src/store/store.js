@@ -210,7 +210,7 @@ export const removeParams = () => {
 // Le mettre dans un nouveau dossier search et dans le fichier search 
 export const storeDuplication = reactive({
     input: "",
-    input_cat: params.get("tab"),
+    input_cat: (params.get("tab") !== null) ? params.get("tab") : "",
     store: store.value
 })
 
@@ -228,7 +228,6 @@ export const search = computed(() => {
     }
 
     if (storeDuplication.input_cat !== "") {
-        console.log("siu")
         storeDuplication.input = ""
 
         url.searchParams.set("tab", storeDuplication.input_cat);

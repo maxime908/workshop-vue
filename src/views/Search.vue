@@ -10,7 +10,7 @@
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="prefixId">#</span>
-                <input type="text" class="form-control" name="search_by_categorie" id="search_by_categorie" v-model="storeDuplication.input_cat" placeholder="Rechercher par categorie..."/>
+                <input type="text" class="form-control" name="search_by_tag" id="search_by_tag" v-model="storeDuplication.input_cat" placeholder="Rechercher par tag..."/>
             </div>
         </div>
             
