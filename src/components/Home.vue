@@ -2,7 +2,7 @@
     import 'highlight.js/lib/common';
     import hljsVuePlugin from "@highlightjs/vue-plugin";
     import { dislike, like, userInfo } from '@/store/store';
-    import { ref } from 'vue';
+    import { ref, watchEffect } from 'vue';
 
     import { useClipboard } from '@vueuse/core'
 
@@ -68,8 +68,8 @@
 </script>
 
 <template>
-    <ul class="d-flex gap-5 align-items-start p-0">
-        <div class="d-flex flex-column gap-4 align-items-center info_user">
+    <ul class="d-flex gap-5 align-items-start p-5 card-home">
+        <div class="first-child d-flex flex-column gap-4 align-items-center info_user">
             <span>
                 {{ userInfo(id_of_user).firstName }}
             </span>
@@ -79,33 +79,47 @@
             </svg>
         </div>
 
-        <div class="d-flex flex-column w-100 gap-3">
+        <div class="d-flex flex-column w-90 gap-3">
             <a :href="img" class="fit-content">
                 <img :src="img" :alt="img" class="w-100 object-fit-cover">
             </a>
             <div v-if="code !== ''" class="d-flex justify-content-between position-relative code">
-                <highlightjs class="w-100"
+                <div class="line">
+                    <div v-for="line in tablignes=JSON.stringify(code).split('\\n').length">
+                        {{ line }}
+                    </div>
+                </div>
+                <highlightjs
                     v-if="code !== null"
                     :code="code"
                 />
                 <i class="bi bi-clipboard2 position-absolute right-10px top-5px cursor-pointer" v-if="!copied" @click="copy(code)"></i>
                 <i v-else class="bi bi-clipboard2-fill position-absolute right-10px top-5px cursor-pointer"></i>
             </div>
-            <div class="d-flex gap-2 flex-wrap">
-                <a :href="'/search?tab=' + tag.replace('#', '')" v-for="tag in postTag" class="cursor-pointer btn p-0">
-                    {{ tag }}
-                </a>
-            </div>
             <div>
                 {{ description }}
             </div>
-            <div class="d-flex gap-3">
-                <span id="like" @click="like(id, bool = !likeBool)">Like(s): {{ likes }}</span>
-                <span id="dislike" @click="dislike(id, bool = !dislikeBool)">Dislike(s): {{ dislikes }}</span>
+            <div class="d-flex gap-2 flex-wrap">
+                <a class="btn btn-dark" :href="'/search?tab=' + tag.replace('#', '')" v-for="tag in postTag">
+                    {{ tag }}
+                </a>
             </div>
-            <div v-if="id_user === id_of_user" class="d-flex gap-3">
-                <a class="btn btn-primary" :href="'/post/update/' + id">Modifier</a>
-                <a class="btn btn-danger" :href="'/delete/' + id">Supprimer</a>
+            <div class="d-flex justify-content-between align-items-center">
+                <div v-if="id_user === id_of_user" class="d-flex gap-3">
+                    <a class="btn btn-primary" :href="'/post/update/' + id">Modifier</a>
+                    <a class="btn btn-danger" :href="'/delete/' + id">Supprimer</a>
+                </div>
+                <div class="d-flex gap-3 like-content">
+                    <div :id="'like' + id">
+                        <span v-if="!likeBool" @click="like(id, bool = !likeBool)"><i class="bi bi-hand-thumbs-up"></i> {{ likes }}</span>
+                        <span v-else @click="like(id, bool = !likeBool)"><i class="bi bi-hand-thumbs-up-fill"></i> {{ likes }}</span>
+                    </div>
+
+                    <div :id="'dislike' + id">
+                        <span v-if="!dislikeBool" @click="dislike(id, bool = !dislikeBool)"><i class="bi bi-hand-thumbs-down"></i> {{ dislikes }}</span>
+                        <span v-else @click="dislike(id, bool = !dislikeBool)"><i class="bi bi-hand-thumbs-down-fill"></i> {{ dislikes }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </ul>

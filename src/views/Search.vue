@@ -5,7 +5,7 @@
 
 <template>
     <main class="d-flex flex-column gap-5">
-        <div  class="d-flex flex-column gap-2">
+        <div class="d-flex flex-column gap-2">
             <input type="text" class="form-control" name="search" id="search" v-model="storeDuplication.input" placeholder="Rechercher...">
 
             <div class="input-group mb-3">

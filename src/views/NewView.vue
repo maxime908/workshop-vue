@@ -66,13 +66,13 @@
             <div class="d-flex flex-wrap gap-4">
                 <div v-for="(tag, index) in post.tag">
                     <div v-if="tag !== null && $route.params.id" class="d-flex gap-2">
-                        <input class="cursor-pointer" v-model="post.tag[index]"></input>
+                        <input class="cursor-pointer form-control"  v-model="post.tag[index]"></input>
                         <button @click.prevent="post.tag.splice(post.tag.indexOf(tag), 1);" class="btn btn-danger">Supprimer tag</button>
                     </div>
                 </div>
             </div>
             <div class="d-flex gap-2">
-                <input type="text" id="tag" v-model="refTag">
+                <input type="text" class="form-control" id="tag" v-model="refTag">
                 <button @click.prevent="addTag(refTag)" class="btn btn-primary">Ajouter le tag</button>
             </div>
         </div>

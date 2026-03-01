@@ -4,9 +4,21 @@
   box-sizing: border-box;
 }
 
+nav div a {
+  color: white !important;
+  transition: 0.25s;
+}
+
+nav div a:hover {
+  opacity: 0.7;
+  transition: 0.25s;
+}
+
 body {
   -webkit-user-select: none;
   user-select: none;
+  background-color: #0f172a !important;
+  color: white !important;
   /* margin-top: 20px;
   color: #bcd0f7;
   background: #1A233A; */
@@ -95,16 +107,17 @@ main, form {
     text-align: center;
 }
 
-/* .card {
-    background: #272E48;
+.card, .card-home {
+    background: #1e293b;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     border: 0;
     margin-bottom: 1rem;
-} */
+    color: white;
+}
 
-/* .form-control {
+.form-control {
     border: 1px solid #596280;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
@@ -112,10 +125,87 @@ main, form {
     font-size: .825rem;
     background: #1A233A;
     color: #bcd0f7;
-} */
+}
 
 .code, img {
   min-width: 300px;
+}
+
+/* .tag a {
+  background-color: #292D3D;
+  color: white;
+  padding: 7px;
+  text-decoration: none;
+  border-radius: 10px;
+} */
+
+.line {
+  padding-top: 25px;
+  position: absolute;
+  left: 20px;
+  line-height: 22.5px;
+  color: #64748b;
+}
+
+pre code {
+  padding-left: 60px !important;
+  border-left: 4px solid #64748b !important;
+}
+
+code, .line {
+  font-size: 15px !important;
+}
+
+.info_user svg {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+code {
+  padding: 25px 0 !important;
+  padding-right: 25px !important;
+}
+
+pre {
+  width: 100% !important;
+}
+
+.code i {
+  color: white !important;
+}
+
+.like-content span {
+  cursor: pointer;
+}
+
+.like-content span:hover {
+  opacity: 0.7;
+}
+
+#prefixId {
+  background-color: #0f172a !important;
+  color: white;
+  border-color: #596280;
+}
+
+input::placeholder {
+  color: white !important;
+}
+
+input:focus::placeholder {
+  color: black !important;
+}
+
+.container-fluid, nav {
+  background-color: #0f172a;
+}
+
+button {
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 1000px) {
@@ -139,7 +229,7 @@ main, form {
       flex-direction: column;
     }
 
-    ul div:first-child {
+    ul .first-child {
       margin: auto;
     }
 
