@@ -1,8 +1,9 @@
 <script>
     import 'highlight.js/lib/common';
     import hljsVuePlugin from "@highlightjs/vue-plugin";
-    import { dislike, like, userInfo } from '@/store/store';
     import { onMounted, ref, watchEffect } from 'vue';
+    import { dislike, like } from '@/engagement/engagement';
+    import { userInfo } from '@/users/users';
 
     import { useClipboard } from '@vueuse/core'
 
@@ -96,7 +97,7 @@
 
         <div class="d-flex flex-column w-90 gap-3">
             <a :href="img" class="fit-content">
-                <img :src="img" :alt="img" class="w-100 object-fit-cover">
+                <img :src="img" :alt="img" @error="e => e.target.src = '/image-default.png'" class="w-100 object-fit-cover">
             </a>
             <div v-if="code !== ''" class="d-flex justify-content-between position-relative code">
                 <div class="line">
@@ -122,7 +123,7 @@
                     {{ tag }}
                 </a>
             </div>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-5">
                 <div v-if="id_user === id_of_user" class="d-flex gap-3">
                     <a class="btn btn-primary" :href="'/post/update/' + id">Modifier</a>
                     <a class="btn btn-danger" :href="'/delete/' + id">Supprimer</a>

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import { recupId } from '@/store/store';
+import { recupId } from '@/post/post'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,11 +29,11 @@ const router = createRouter({
         path: '/delete/:id',
         name: 'delete',
         component: () => import('../views/DeleteView.vue'),
-        beforeEnter: (to, from, next) => {
+        beforeEnter: (to, from) => {
             if (recupId(to.params.id).id_user !== JSON.parse(localStorage.getItem("is_authentificated"))["id"]) {
-              next({name: 'home'})
+              return {name: 'home'}
             } else {
-              next(true)
+              return true
             }
         },
     },
@@ -60,11 +60,11 @@ const router = createRouter({
           component: () => import('../views/LoginView.vue'),
         },
       ],
-      beforeEnter: (to, from, next) => {
+      beforeEnter: (to, from) => {
         if (localStorage.getItem("is_authentificated")) {
-          next({ name: 'home' });
+          return { name: 'home' };
         } else {
-          next(true)
+          return true
         }
       },
     },
@@ -74,7 +74,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      beforeEnter: (to, from, next) => {
+      beforeEnter: (to, from) => {
         if (localStorage.getItem("is_authentificated")) {
           localStorage.removeItem("is_authentificated");
           window.location.href = "/log/login"
@@ -92,9 +92,9 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && to.name !== 'logup' && !localStorage.getItem("is_authentificated")) next({ name: 'login' })
-  else next(true)
+router.beforeEach((to, from) => {
+  if (to.name !== 'login' && to.name !== 'logup' && !localStorage.getItem("is_authentificated")) return { name: 'login' }
+  else return true
 })
 
 export default router

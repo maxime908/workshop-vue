@@ -1,6 +1,7 @@
 <script setup>
+    import { addPost, recupId, updatePost } from '@/post/post';
+    import { gestionError } from '@/store/store';
     import { computed, onMounted, reactive, ref, watch, watchEffect } from 'vue';
-    import { addPost, updatePost, recupId } from '../store/store';
     import { useRoute } from 'vue-router';
 
     const route = useRoute();
@@ -45,12 +46,20 @@
             refTag.value = "";
         }
     }
+
+    const error = computed(() => {
+        return gestionError.errorAdd
+    })
 </script>
 
 <template>
     <form class="d-flex flex-column gap-2 align-items-start">
         <h1 v-if="!$route.params.id">Crée un post</h1>
         <h1 v-else>Modifier un post</h1>
+
+        <div v-if="error !== ''" class="alert alert-danger w-100">
+            {{ error }}
+        </div>
 
         <div class="mb-3 w-100">
             <input v-if="$route.params.id" type="text" v-model="post.img" class="form-control" name="url" id="url" placeholder="Url de l'image">

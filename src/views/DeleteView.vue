@@ -1,5 +1,5 @@
 <script setup>
-    import { deletePost, recupId } from '@/store/store';
+    import { deletePost, recupId } from '@/post/post';
     import { onMounted, ref } from 'vue';
     import { useRoute } from 'vue-router';
 

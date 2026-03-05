@@ -128,7 +128,11 @@ main, form {
 }
 
 .code, img {
-  min-width: 300px;
+  min-width: 230px;
+}
+
+img {
+  max-width: 500px;
 }
 
 /* .tag a {
@@ -214,6 +218,10 @@ button {
   margin-top: 20px;
 }
 
+.right-130px {
+  right: 130px;
+}
+
 @media screen and (max-width: 1000px) {
   .container div:first-child {
     flex-direction: column !important;
@@ -241,5 +249,15 @@ button {
 
     main, form {
       padding: 100px 16px !important;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .card-home {
+      padding: 16px !important;
+    }
+
+    .w-90 {
+      width: 100%;
     }
 }

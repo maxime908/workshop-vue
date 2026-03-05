@@ -1,15 +1,26 @@
 <script setup>
-    import { addUser } from '@/store/store';
-    import { ref } from 'vue';
+    import { gestionError } from '@/store/store';
+    import { addUser } from '@/users/users';
+    import { computed, ref } from 'vue';
 
     const email = ref("")
     const password = ref("")
     const firstName = ref("")
     const lastName = ref("")
+
+    const error = computed(() => {
+        return gestionError.errorLogup
+    })
 </script>
 
 <template>
     <form>
+        <h1>S'inscrire</h1>
+
+        <div v-if="error !== ''" class="alert alert-danger">
+            {{ error }}
+        </div>
+
         <div class="mb-3">
             <label for="firstName" class="form-label">Prénom</label>
             <input v-model="firstName" type="text" id="firstName" class="form-control"/>

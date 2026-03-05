@@ -1,6 +1,14 @@
 <script setup>
-    import { search, storeDuplication } from '@/store/store';
+    import { search, storeDuplication } from '@/search/search';
     import Home from '../components/Home.vue'
+    import { ref } from 'vue';
+
+    const count = ref(5)
+
+    function increment() {
+        count.value += 5
+        window.location.href = "#button"
+    }
 </script>
 
 <template>
@@ -14,7 +22,7 @@
             </div>
         </div>
             
-        <div v-for="item in search">
+        <div v-for="item in search.slice(0, count)">
             <Home 
                 :id="item.id" 
                 :description="item.text"  
@@ -28,5 +36,7 @@
                 :post-tag="item.tag"
             />
         </div>
+
+        <button class="btn btn-primary d-flex justify-content-center align-items-center m-auto" id="button" @click="increment">Voir Plus</button>
     </main>
 </template>

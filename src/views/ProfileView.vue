@@ -1,9 +1,7 @@
 <script setup>
-    import { deleteAccount, removeParams, userInfo } from '@/store/store';
+    import { deleteAccount, userInfo } from '@/users/users';
     import { useUrlSearchParams } from '@vueuse/core';
     import { computed, onMounted, ref } from 'vue';
-
-    const params = useUrlSearchParams('history')
 
     let id_of_user = null
 
@@ -18,12 +16,6 @@
             user.value = userInfo(id_of_user.value);
         }
     })
-
-    let is_authentificated
-
-    if (JSON.parse(localStorage.getItem('is_authentificated'))) {
-        is_authentificated = ref(JSON.parse(localStorage.getItem('is_authentificated')))
-    }
 </script>
 
 <template>
@@ -77,8 +69,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-user">
+                                <div class="btn-user d-flex gap-3">
                                     <a href="/logout" class="btn btn-primary">Se deconnecter</a>
+                                    <button class="btn btn-danger" @click="deleteAccount(id_of_user)">Supprimer le compte</button>
                                 </div>
                             </div>
                         </div>
