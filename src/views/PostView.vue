@@ -74,11 +74,14 @@
             <textarea v-if="$route.params.id" class="form-control" v-model="post.code" name="code" id="code" rows="3" @keydown="tabulationOnTextarea($event)" placeholder="Extrait de code"></textarea>
             <textarea v-else class="form-control" v-model="code" name="code" id="code" rows="3" @keydown="tabulationOnTextarea($event)" placeholder="Extrait de code"></textarea>
         </div>
+        <div class="d-flex gap-3">
+            <span v-for="tag in tagStore.saveTag" class="btn btn-dark" @click.prevent="tagStore.saveTag.splice(tagStore.saveTag.indexOf(tag), 1);">{{ tag }}</span>
+        </div>
         <div class="d-flex flex-column gap-5">
             <div class="d-flex flex-wrap gap-4">
                 <div v-for="(tag, index) in post.tag">
                     <div v-if="tag !== null && $route.params.id" class="d-flex gap-2">
-                        <input class="cursor-pointer form-control"  v-model="post.tag[index]"></input>
+                        <input class="form-control"  v-model="post.tag[index]"></input>
                         <button @click.prevent="post.tag.splice(post.tag.indexOf(tag), 1);" class="btn btn-danger">Supprimer tag</button>
                     </div>
                 </div>
@@ -87,9 +90,6 @@
                 <input type="text" class="form-control" id="tag" v-model="refTag">
                 <button @click.prevent="addTag(refTag)" class="btn btn-primary">Ajouter le tag</button>
             </div>
-        </div>
-        <div class="d-flex gap-3">
-            <span v-for="tag in tagStore.saveTag" class="cursor-pointer" @click.prevent="tagStore.saveTag.splice(tagStore.saveTag.indexOf(tag), 1);">{{ tag }}</span>
         </div>
 
         <button v-if="!$route.params.id" class="btn btn-primary" @click.prevent="addPost(img, text, code, tagStore.saveTag)">Envoyer</button>
