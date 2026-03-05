@@ -8,15 +8,8 @@ export const users = useStorage(
             id: 0,
             firstName: "Maxime",
             lastName: "DREZET",
-            email: "drezetmaxime67@gmail.com",
-            password: "moi1",
-        },
-        {
-            id: 1,
-            firstName: "Maxime",
-            lastName: "DREZET",
-            email: "moi@gmail.com",
-            password: "moi2",
+            email: "test@gmail.com",
+            password: "test",
         },
     ]
 )
