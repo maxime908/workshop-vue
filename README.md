@@ -1,4 +1,4 @@
-# Liste des fonctionnalitées
+# Liste des fonctionnalités
 ## Etape 1 - Facile
 - Crud : create, read, update, delete
 - Système de like
@@ -10,11 +10,11 @@
 - Système de filtre et de tri
 - Gérer pagination
 ---
-#### L'utilisateur doit pouvoir trier et filter les posts : par exemple par date de création. Il y aura aussi une pagination sur la quantité de post qui s'afficheront sur la page du user
+#### L'utilisateur doit pouvoir trier et filtrer les posts : par exemple par date de création. Il y aura aussi une pagination sur la quantité de post qui s'afficheront sur la page du user
 ---
 ## Etape 3 - Hardcore
 - Système de gestion des users
-#### L'utilisateur pourra supprimer sont compte et modifier ces informations
+#### L'utilisateur pourra supprimer son compte et modifier ces informations
 
 # Route 
 - Une main page avec les posts
@@ -26,3 +26,7 @@
 # Information de connexion
 - Email : test@gmail.com
 - password : test
+
+# Lancement du projet 
+- npm install
+- npm run dev
