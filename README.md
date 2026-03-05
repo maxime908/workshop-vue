@@ -20,6 +20,8 @@
 - Une main page avec les posts
 - Une page de création et de modification de posts
 - Une page de gestion des users
+- Une page de d'inscription et de connexion
+- Une page consacrée à la recherche et au filtre par tag
 
 # Information de connexion
 - Email : test@gmail.com
