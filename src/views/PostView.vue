@@ -74,7 +74,7 @@
             <textarea v-if="$route.params.id" class="form-control" v-model="post.code" name="code" id="code" rows="3" @keydown="tabulationOnTextarea($event)" placeholder="Extrait de code"></textarea>
             <textarea v-else class="form-control" v-model="code" name="code" id="code" rows="3" @keydown="tabulationOnTextarea($event)" placeholder="Extrait de code"></textarea>
         </div>
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 flex-wrap">
             <span v-for="tag in tagStore.saveTag" class="btn btn-dark" @click.prevent="tagStore.saveTag.splice(tagStore.saveTag.indexOf(tag), 1);">{{ tag }}</span>
         </div>
         <div class="d-flex flex-column gap-5">

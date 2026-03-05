@@ -69,7 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-user d-flex gap-3">
+                                <div class="btn-user d-flex gap-3 flex-wrap">
                                     <a href="/logout" class="btn btn-primary">Se deconnecter</a>
                                     <button class="btn btn-danger" @click="deleteAccount(id_of_user)">Supprimer le compte</button>
                                 </div>
